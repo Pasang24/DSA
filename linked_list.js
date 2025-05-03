@@ -117,6 +117,19 @@ class LinkedList {
 
     return temp.value;
   }
+  reverse() {
+    let prev = null;
+    let current = this.#head;
+
+    while (current !== null) {
+      let temp = current.next;
+      current.next = prev;
+      prev = current;
+      current = temp;
+    }
+    this.#tail = this.#head;
+    this.#head = prev;
+  }
   contains(value) {
     let index = this.search(value);
 
