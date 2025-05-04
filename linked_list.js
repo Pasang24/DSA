@@ -130,6 +130,16 @@ class LinkedList {
     this.#tail = this.#head;
     this.#head = prev;
   }
+  recursiveReverse(head = this.#head) {
+    if (head.next === null) {
+      this.#tail = this.#head;
+      this.#head = head;
+      return;
+    }
+    this.recursiveReverse(head.next);
+    head.next.next = head;
+    head.next = null;
+  }
   contains(value) {
     let index = this.search(value);
 
@@ -164,15 +174,19 @@ list.insertAtTail(0);
 list.insertAtHead(-9);
 list.insertAt(3, 9);
 list.print();
-console.log(list.search(9));
-console.log(list.getAt(3));
-console.log(list.contains(9));
-console.log("length: ", list.getLength());
-list.remove();
-list.remove();
-list.remove();
-console.log("length: ", list.getLength());
-list.remove();
-list.remove();
-console.log("length: ", list.getLength());
+list.reverse();
 list.print();
+list.recursiveReverse();
+list.print();
+// console.log(list.search(9));
+// console.log(list.getAt(3));
+// console.log(list.contains(9));
+// console.log("length: ", list.getLength());
+// list.remove();
+// list.remove();
+// list.remove();
+// console.log("length: ", list.getLength());
+// list.remove();
+// list.remove();
+// console.log("length: ", list.getLength());
+// list.print();
